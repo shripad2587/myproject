@@ -1,0 +1,6 @@
+<html>
+<body>
+<h1>Welcome to DevOps CI/CD</h1>
+<p>Website deployed via Jenkins & Docker1</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/<shripad2587>/myproject.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t myweb:latest .'
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                script {
+                    sh 'docker rm -f myweb || true'
+                }
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh 'docker run -d --name myweb -p 80:80 myweb:latest'
+            }
+        }
+    }
+}
